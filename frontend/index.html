@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>SafeHer - Women's Safety App</title>
+
+    <style>
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body{
+            background: linear-gradient(135deg,#6C63FF,#8E44AD);
+            height:100vh;
+            display:flex;
+            justify-content:center;
+            align-items:center;
+        }
+
+        .container{
+            background:white;
+            width:400px;
+            padding:30px;
+            border-radius:20px;
+            text-align:center;
+            box-shadow:0 10px 25px rgba(0,0,0,0.2);
+        }
+
+        .logo{
+            font-size:50px;
+            margin-bottom:10px;
+        }
+
+        h1{
+            color:#6C63FF;
+            margin-bottom:10px;
+        }
+
+        p{
+            color:#666;
+            margin-bottom:20px;
+        }
+
+        .sos-btn{
+            width:100%;
+            padding:15px;
+            border:none;
+            border-radius:50px;
+            background:#ff4757;
+            color:white;
+            font-size:20px;
+            font-weight:bold;
+            cursor:pointer;
+            transition:0.3s;
+        }
+
+        .sos-btn:hover{
+            transform:scale(1.05);
+            background:#e84118;
+        }
+
+        #msg{
+            margin-top:20px;
+            font-size:18px;
+            font-weight:bold;
+            color:green;
+        }
+
+        .features{
+            margin-top:25px;
+            text-align:left;
+        }
+
+        .features li{
+            margin:8px 0;
+            color:#555;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <div class="logo">🛡️</div>
+
+    <h1>SafeHer</h1>
+
+    <p>Your Personal Women's Safety Companion</p>
+
+    <button class="sos-btn" onclick="sendSOS()">
+        🚨 SEND SOS ALERT
+    </button>
+
+    <div id="msg"></div>
+
+    <div class="features">
+        <h3>Features</h3>
+        <ul>
+            <li>📍 Live Location Sharing</li>
+            <li>📞 Emergency Contacts</li>
+            <li>🚨 Instant SOS Alerts</li>
+            <li>🛡️ Safety Monitoring</li>
+        </ul>
+    </div>
+
+</div>
+
+<script>
+
+async function sendSOS(){
+
+    const response = await fetch("http://localhost:5000/sos");
+
+    const data = await response.json();
+
+    document.getElementById("msg").innerHTML =
+    "✅ " + data.message;
+}
+
+</script>
+
+</body>
+</html>
